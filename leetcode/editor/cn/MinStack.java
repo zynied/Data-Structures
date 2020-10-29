@@ -40,14 +40,18 @@
 // 👍 706 👎 0
 
 package com.nzy.leetcode;
-public static void main(String[] args) {}
+public class MinStack{
+
+public static void main(String[] args) {
+    Solution minStack=new MinStack().new Solution();
+}
 //leetcode submit region begin(Prohibit modification and deletion)
-class MinStack {
+class Solution {
     private Stack<Integer> stack;
     private Stack<Integer> minStack;
 
     /** initialize your data structure here. */
-    public MinStack() {
+    public Solution() {
         stack=new Stack<>();
         minStack=new Stack<>();
     }
