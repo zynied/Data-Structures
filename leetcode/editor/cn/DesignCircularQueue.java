@@ -46,46 +46,68 @@
 package com.nzy.leetcode;
 public class DesignCircularQueue{
     public static void main(String[] args) {
-        Solution solution = new DesignCircularQueue().new Solution();
+        DesignCircularQueue.MyCircularQueue solution = new DesignCircularQueue().new MyCircularQueue(3);
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class MyCircularQueue {
+        private int k;//队列大小
+        private int head;//队列的头指针
+        private int tail;//队列的尾指针
+        private Integer queue[];//存放队列数据的数组
 
-    /** Initialize your data structure here. Set the size of the queue to be k. */
-    public MyCircularQueue(int k) {
+        public MyCircularQueue() {
+            k=24;
+            head=0;
+            tail=0;
+            queue=new Integer[k];
+        }
+        /** Initialize your data structure here. Set the size of the queue to be k. */
+        public MyCircularQueue(int k) {
+            this.k=k;
+            head=0;
+            tail=0;
+            queue=new Integer[this.k];
+        }
 
+        /** Insert an element into the circular queue. Return true if the operation is successful. */
+        public boolean enQueue(int value) {
+            if (isFull())return false;
+            queue[tail]=value;
+            tail=(tail+1)%k;
+            return true;
+        }
+
+        /** Delete an element from the circular queue. Return true if the operation is successful. */
+        public boolean deQueue() {
+            if (isEmpty())return false;
+            int temp=queue[head];
+            head=(head+1)%k;
+            System.out.println("出队列的数据为:"+temp);
+            return true;
+        }
+
+        /** Get the front item from the queue. */
+        public int Front() {
+            if (isEmpty())return -1;
+            return queue[head];
+        }
+
+        /** Get the last item from the queue. */
+        public int Rear() {
+            if (isEmpty())return -1;
+            return queue[(tail-1+k)%k];
+        }
+
+        /** Checks whether the circular queue is empty or not. */
+        public boolean isEmpty() {
+            return head==tail;
+        }
+
+        /** Checks whether the circular queue is full or not. */
+        public boolean isFull() {
+            return (tail+1)%k==head;
+        }
     }
-
-    /** Insert an element into the circular queue. Return true if the operation is successful. */
-    public boolean enQueue(int value) {
-
-    }
-
-    /** Delete an element from the circular queue. Return true if the operation is successful. */
-    public boolean deQueue() {
-
-    }
-
-    /** Get the front item from the queue. */
-    public int Front() {
-
-    }
-
-    /** Get the last item from the queue. */
-    public int Rear() {
-
-    }
-
-    /** Checks whether the circular queue is empty or not. */
-    public boolean isEmpty() {
-
-    }
-
-    /** Checks whether the circular queue is full or not. */
-    public boolean isFull() {
-
-    }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
